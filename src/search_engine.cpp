@@ -1,19 +1,45 @@
-#include <iostream>
-#include <exception>
+//#define DEBUG
 
+#include <iostream>
 #include "initial_tests.h"
-#include "functions.h"
+#include "general_functions.h"
+#include "ConverterJSON.h"
 
 int main() {
     try {
         initialTests();
     }
-    catch (const ConfigFileException& x) {
+    catch (const ConfigFileException &x) {
         std::cerr << x.what() << '\n';
         return 0;
     }
 
+#ifndef DEBUG
     programStarting();
+
+    std::vector<std::string> testVec;
+
+    testVec = ConverterJSON::getTextDocuments();
+
+    for (const auto& i: testVec) {
+        if(!i.empty())
+        std::cout << i << "\n\n";
+    }
+
+    std::cout << "=======\n";
+    std::cout << "max_responses: " << ConverterJSON::GetResponsesLimit() << "\n";
+    std::cout << "=======\n";
+
+#endif
+
+    std::cout << "=======\n";
+    auto vec_req = ConverterJSON::GetRequests();
+    std::cout << "REQUESTS:\n";
+
+    for (auto i: vec_req) {
+        std::cout << i << "\n";
+    }
+    std::cout << "=======\n";
 
     /*
     std::ifstream file("../config.json");

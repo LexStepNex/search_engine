@@ -1,7 +1,3 @@
-//
-// Created by User on 26.03.2025.
-//
-
 #ifndef SEARCH_ENGINE_CONVERTERJSON_H
 #define SEARCH_ENGINE_CONVERTERJSON_H
 
@@ -17,16 +13,16 @@ public:
     ConverterJSON() = default;
 
     //Метод получения содержимого файлов из config.json
-    std::vector<std::string> getTextDocuments();
+    static std::vector<std::string> getTextDocuments();
 
     //Метод получения максимального числа ответов на один запрос
-    int GetResponsesLimit();
+    static int GetResponsesLimit();
 
-    //Метод получения запросов из файл requests.json
-    std::vector<std::string> GetRequests();
+    //Метод получения запросов из файла requests.json
+    static std::vector<std::string> GetRequests();
 
     //Метод отправки ответов в файл answers.json
-    void putAnswers(std::vector<std::vector<std::pair<int,float>>> answers);
+    static void putAnswers(std::vector<std::vector<std::pair<int, float>>> answers);
 };
 
 

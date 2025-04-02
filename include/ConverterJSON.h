@@ -22,7 +22,7 @@ public:
     static std::vector<std::string> GetRequests();
 
     //Метод отправки ответов в файл answers.json
-    static void putAnswers(std::vector<std::vector<std::pair<int, float>>> answers);
+    static void putAnswers(const std::vector<std::vector<std::pair<int, float>>>& answers);
 };
 
 

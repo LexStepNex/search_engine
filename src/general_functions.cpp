@@ -42,8 +42,25 @@ int wordCountInString(const std::string& str) {
             std::string error = "Words containing only Latin letters should be used\n";
             throw ConfigFileException(error);
         }
+
         count++;
     }
 
     return count;
+}
+
+std::string getSerialNumber(const unsigned& number) {
+    std::string numberStr = std::to_string(number);
+
+    size_t maxAddZero = 2;
+    size_t quantityZero = maxAddZero - numberStr.size();
+
+    std::string serialNumber;
+    for (int i =0; i <= quantityZero;i++) {
+        serialNumber += '0';
+    }
+
+    serialNumber += numberStr;
+
+    return serialNumber;
 }

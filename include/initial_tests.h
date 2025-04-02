@@ -43,7 +43,8 @@ void testRequestsJSON() {
         std::ofstream createRequestsJSON(path);
         nlohmann::json requests;
 
-        requests["requests"] = {"write your request", "write your request"};
+        requests["requests"].emplace_back("write your request");
+        requests["requests"].emplace_back("write your request");
 
         createRequestsJSON << requests;
 

@@ -8,4 +8,5 @@ add_executable(search_engine search_engine.cpp
         ${MY_INCLUDE_DIR}/general_functions.h
         ${MY_INCLUDE_DIR}/functions_for_work_with_files.h
         general_functions.cpp
-        general_functions.cpp)
+        ${MY_INCLUDE_DIR}/functions_for_ConverterJSON.h
+        functions_for_ConverterJSON.cpp)

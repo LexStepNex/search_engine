@@ -11,4 +11,6 @@ bool correctWord(const std::string &word);
 
 int wordCountInString(const std::string& str);
 
+std::string getSerialNumber(const unsigned& number);
+
 #endif //SEARCH_ENGINE_GENERAL_FUNCTIONS_H

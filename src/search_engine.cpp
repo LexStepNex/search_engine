@@ -14,8 +14,8 @@ int main() {
         return 0;
     }
 
-#ifndef DEBUG
     programStarting();
+#ifndef DEBUG
 
     std::vector<std::string> testVec;
 
@@ -54,6 +54,7 @@ int main() {
 
     ConverterJSON::putAnswers(vecVecsPairs);
 #endif
+
     /*
     std::ifstream file("../config.json");
 

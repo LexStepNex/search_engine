@@ -1,5 +1,5 @@
-#ifndef SEARCH_ENGINE_CONVERTERJSON_H
-#define SEARCH_ENGINE_CONVERTERJSON_H
+#ifndef SEARCH_ENGINE_CONVERTER_JSON_H
+#define SEARCH_ENGINE_CONVERTER_JSON_H
 
 #pragma once
 
@@ -25,5 +25,4 @@ public:
     static void putAnswers(const std::vector<std::vector<std::pair<int, float>>>& answers);
 };
 
-
-#endif //SEARCH_ENGINE_CONVERTERJSON_H
+#endif //SEARCH_ENGINE_CONVERTER_JSON_H

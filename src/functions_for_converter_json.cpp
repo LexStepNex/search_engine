@@ -1,4 +1,4 @@
-#include "functions_for_ConverterJSON.h"
+#include "functions_for_converter_json.h"
 
 
 std::vector<nlohmann::json>pairsToRelevance(const std::vector<std::pair<int,float>>& docsRank) {

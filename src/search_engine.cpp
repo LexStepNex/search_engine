@@ -1,9 +1,9 @@
-#define DEBUG
+//#define DEBUG
 
 #include <iostream>
 #include "initial_tests.h"
 #include "general_functions.h"
-#include "ConverterJSON.h"
+#include "converter_json.h"
 
 int main() {
     try {
@@ -35,11 +35,11 @@ int main() {
     auto vec_req = ConverterJSON::GetRequests();
     std::cout << "REQUESTS:\n";
 
-    for (auto i: vec_req) {
+    for (const auto& i: vec_req) {
         std::cout << i << "\n";
     }
-    std::cout << "=======\n";
 
+    std::cout << "=======\n";
 
     std::vector<std::vector<std::pair<int, float>>> vecVecsPairs;
     std::vector<std::pair<int, float>> vecPairs1;
@@ -54,26 +54,6 @@ int main() {
 
     ConverterJSON::putAnswers(vecVecsPairs);
 #endif
-
-    /*
-    std::ifstream file("../config.json");
-
-    nlohmann::json test;
-    file >> test;
-
-    std::cout << test.find("config").value().find("name").value() << "\n";
-
-    std::vector<std::string> vec;
-    for (auto i : test.find("files").value()) {
-        vec.push_back(i);
-    }
-
-    std::cout << "source files:\n";
-    for(auto i: vec) {
-        std::cout << i << "\n";
-    }
-        file.close();
-*/
 
     return 0;
 }

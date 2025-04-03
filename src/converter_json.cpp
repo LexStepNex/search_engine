@@ -1,4 +1,4 @@
-#include "ConverterJSON.h"
+#include "converter_json.h"
 
 #include <fstream>
 #include <string>
@@ -7,7 +7,7 @@
 
 #include "functions_for_work_with_files.h"
 #include "general_functions.h"
-#include "functions_for_ConverterJSON.h"
+#include "functions_for_converter_json.h"
 
 std::vector<std::string> ConverterJSON::getTextDocuments() {
     nlohmann::json config = getJsonData("../config.json");
@@ -89,7 +89,7 @@ void ConverterJSON::putAnswers(const std::vector<std::vector<std::pair<int, floa
 
     size_t requestNumber = 1;
     //разбор по каждому запросу
-    for (auto request: answers) {
+    for (const auto& request: answers) {
         std::string requestNumberStr = "request" + getSerialNumber(requestNumber);
 
         if (request.empty()) {

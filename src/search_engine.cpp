@@ -5,9 +5,6 @@
 #include "general_functions.h"
 #include "ConverterJSON.h"
 
-
-#include <algorithm>
-
 int main() {
     try {
         initialTests();
@@ -42,7 +39,7 @@ int main() {
         std::cout << i << "\n";
     }
     std::cout << "=======\n";
-#endif
+
 
     std::vector<std::vector<std::pair<int, float>>> vecVecsPairs;
     std::vector<std::pair<int, float>> vecPairs1;
@@ -56,7 +53,7 @@ int main() {
     vecVecsPairs.push_back(vecPairs4);
 
     ConverterJSON::putAnswers(vecVecsPairs);
-
+#endif
     /*
     std::ifstream file("../config.json");
 

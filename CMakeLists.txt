@@ -9,15 +9,11 @@ file(COPY config.json DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY requests.json DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY answers.json DESTINATION ${CMAKE_BINARY_DIR})
 
-set(JSON_BuildTests OFF CACHE INTERNAL "")
-
-set(RESOURCE_DIR ${CMAKE_SOURCE_DIR}/resources)
-file(COPY ${RESOURCE_DIR} DESTINATION ${CMAKE_BINARY_DIR})
-
 set(MY_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 
 add_subdirectory(src)
 
+set(JSON_BuildTests OFF CACHE INTERNAL "")
 add_subdirectory(nlohmann_json)
 
 target_link_libraries(search_engine PRIVATE nlohmann_json::nlohmann_json)

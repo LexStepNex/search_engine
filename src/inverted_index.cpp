@@ -1,30 +1,46 @@
 #include "inverted_index.h"
 
 #include <sstream>
+#include <thread>
+#include <vector>
 
-void InvertedIndex::UpdateDocumentBase(const std::vector<std::string>& input_docs) {
+#include <iostream>
+
+void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &input_docs) {
     docs.resize(input_docs.size());
     docs = input_docs;
 
-    std::map<std::string, std::vector<Entry>> test;
-
     int docsSize = docs.size();
 
-    for (size_t id = 0; id < docsSize; id++) {
-        std::stringstream stringStream(docs[id]);
-        std::string word;
+    std::vector<std::thread> indexing;
 
-        while(stringStream >> word) {
-            if(freq_dictionary.find(word) != freq_dictionary.end()) {
-                if (id < freq_dictionary[word].size()) {
-                    freq_dictionary[word][id].count++;
-                } else {
-                    freq_dictionary[word].push_back({id,1});
-                }
+    for (size_t id = 0; id < docsSize; id++) {
+        indexing.push_back(std::thread(&InvertedIndex::docIndexing, this, docs[id], id));
+    }
+
+    for (size_t i = 0; i < docsSize; i++) {
+        indexing[i].join();
+    }
+}
+
+void InvertedIndex::docIndexing(const std::string &doc, size_t id) {
+    std::stringstream stringStream(doc);
+    std::string word;
+
+    while (stringStream >> word) {
+        if (freq_dictionary.find(word) != freq_dictionary.end()) {
+            std::lock_guard<std::mutex> lock_indexing(indexing_mutex);
+
+            if (id < freq_dictionary[word].size()) {
+                freq_dictionary[word][id].count++;
             } else {
-                freq_dictionary[word];
-                freq_dictionary[word].push_back({id,1});
+                freq_dictionary[word].push_back({id, 1});
             }
+        } else {
+            std::lock_guard<std::mutex> lock_indexing(indexing_mutex);
+
+            freq_dictionary[word];
+            freq_dictionary[word].push_back({id, 1});
         }
     }
 }
@@ -36,4 +52,3 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string &word) {
         return std::vector<Entry>();
     }
 }
-

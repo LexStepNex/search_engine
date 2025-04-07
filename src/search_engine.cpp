@@ -19,6 +19,8 @@ int main() {
     programStarting();
 
 #ifndef DEBUG
+    InvertedIndex indexDoc;
+    indexDoc.UpdateDocumentBase(ConverterJSON::getTextDocuments());
 #endif
 
 /*

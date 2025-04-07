@@ -4,11 +4,12 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <mutex>
 
 struct Entry {
     size_t doc_id, count;
 
-    // Данный оператор необходим для проведения тестовых сценариев
+    //Перегрузка оператора необходима для проведения тестовых сценариев
     bool operator ==(const Entry& other) const {
         return (doc_id == other.doc_id &&
                 count == other.count);
@@ -28,6 +29,9 @@ public:
 private:
     std::vector<std::string> docs; // список содержимого документов
     std::map<std::string, std::vector<Entry>> freq_dictionary; // частотный словарь
+
+    std::mutex indexing_mutex;
+    void docIndexing (const std::string& doc, size_t id);
 };
 
 #endif //SEARCH_ENGINE_INVERTED_INDEX_H

@@ -1,9 +1,11 @@
 //#define DEBUG
 
 #include <iostream>
+
 #include "initial_tests.h"
 #include "general_functions.h"
 #include "converter_json.h"
+#include "inverted_index.h"
 
 int main() {
     try {
@@ -15,15 +17,18 @@ int main() {
     }
 
     programStarting();
-#ifndef DEBUG
 
+#ifndef DEBUG
+#endif
+
+/*
     std::vector<std::string> testVec;
 
     testVec = ConverterJSON::getTextDocuments();
 
     for (const auto& i: testVec) {
         if(!i.empty())
-        std::cout << i << "\n\n";
+            std::cout << i << "\n\n";
     }
 
     std::cout << "=======\n";
@@ -53,7 +58,6 @@ int main() {
     vecVecsPairs.push_back(vecPairs4);
 
     ConverterJSON::putAnswers(vecVecsPairs);
-#endif
-
+*/
     return 0;
 }

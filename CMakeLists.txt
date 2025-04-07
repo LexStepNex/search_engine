@@ -9,7 +9,8 @@ file(COPY config.json DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY requests.json DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY answers.json DESTINATION ${CMAKE_BINARY_DIR})
 
-set(MY_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
 
 include(FetchContent)
 FetchContent_Declare(

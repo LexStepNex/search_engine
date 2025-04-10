@@ -19,6 +19,7 @@ struct Entry {
 class InvertedIndex {
 public:
     InvertedIndex() = default;
+    InvertedIndex(const InvertedIndex& other_index);
 
     //метод обновляет/заполняет базу документов
     void UpdateDocumentBase(const std::vector<std::string>& input_docs);
@@ -26,11 +27,13 @@ public:
     //метод определяет количество вхождений слова в загруженной базе документов
     std::vector<Entry> GetWordCount(const std::string& word);
 
+    int getSizeDocs();
 private:
     std::vector<std::string> docs; // список содержимого документов
     std::map<std::string, std::vector<Entry>> freq_dictionary; // частотный словарь
 
     std::mutex indexing_mutex;
+
     void docIndexing (const std::string& doc, size_t id);
 };
 

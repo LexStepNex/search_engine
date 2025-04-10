@@ -74,7 +74,8 @@ std::vector<std::string> ConverterJSON::GetRequests() {
                 vec_requests.emplace_back(request);
             }
         } catch (const ConfigFileException &x) {
-            std::cerr << x.what();
+            std::cerr << "Request: " << request << " incorrect\n" << x.what();
+            vec_requests.emplace_back("");//некорректный запрос
         }
     }
 

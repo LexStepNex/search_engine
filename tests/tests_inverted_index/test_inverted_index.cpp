@@ -3,18 +3,22 @@
 #include "inverted_index.h"
 
 using namespace std;
+
 void TestInvertedIndexFunctionality(
         const vector<string>& docs,
         const vector<string>& requests,
         const vector<vector<Entry>>& expected
 ) {
     std::vector<std::vector<Entry>> result;
+
     InvertedIndex idx;
     idx.UpdateDocumentBase(docs);
+
     for(auto& request : requests) {
         std::vector<Entry> word_count = idx.GetWordCount(request);
         result.push_back(word_count);
     }
+
     ASSERT_EQ(result, expected);
 }
 

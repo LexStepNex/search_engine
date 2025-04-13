@@ -28,9 +28,10 @@ public:
     std::vector<Entry> GetWordCount(const std::string& word);
 
     int getSizeDocs();
+    std::map<std::string, std::vector<Entry>> freq_dictionary; // частотный словарь
+
 private:
     std::vector<std::string> docs; // список содержимого документов
-    std::map<std::string, std::vector<Entry>> freq_dictionary; // частотный словарь
 
     std::mutex indexing_mutex;
 

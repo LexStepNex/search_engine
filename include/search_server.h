@@ -25,6 +25,13 @@ struct RelativeIndex {
         return std::make_pair(doc_id,rank);
     }
 
+    bool operator<(const RelativeIndex &index) {
+        return this->rank < index.rank;
+    }
+
+    bool operator>(const RelativeIndex &index) {
+        return this->rank > index.rank;
+    }
 };
 
 class SearchServer {

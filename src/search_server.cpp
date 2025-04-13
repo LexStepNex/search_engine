@@ -88,20 +88,16 @@ SearchServer::calculationRelativeRelevances(std::vector<std::vector<int>> &absol
         size_t size_absolute = absolute_relevance[i].size();
         auto max_abs_relevance = std::max_element(absolute_relevance[i].begin(), absolute_relevance[i].end());
 
-        std::multimap<float, int> multimap_relative_relevance;
+        //std::multimap<float, int> multimap_relative_relevance;
 
         for (int j = 0; j < size_absolute; j++) {
             if (absolute_relevance[i][j] == 0) continue;
             auto doc_id = j;
             auto rank = (float) absolute_relevance[i][j] / (float) (*max_abs_relevance);
 
-            multimap_relative_relevance.emplace(rank, doc_id);
+            relative_relevance[i].emplace_back(RelativeIndex(doc_id, rank));
         }
-
-        for (auto doc: multimap_relative_relevance) {
-            auto d = multimap_relative_relevance.equal_range(doc.first);
-            relative_relevance[i].emplace_back(RelativeIndex(doc.second, doc.first));
-        }
+        std::sort(relative_relevance[i].begin(), relative_relevance[i].end());
         std::reverse(relative_relevance[i].begin(), relative_relevance[i].end());
     }
 

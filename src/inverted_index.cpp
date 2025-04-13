@@ -6,7 +6,6 @@
 
 #include <iostream>
 
-
 InvertedIndex::InvertedIndex(const InvertedIndex &other_index) {
     docs = other_index.docs;
     freq_dictionary = other_index.freq_dictionary;
@@ -37,14 +36,12 @@ void InvertedIndex::docIndexing(const std::string &doc, size_t id) {
         std::lock_guard<std::mutex> lock_indexing(indexing_mutex);
 
         if (freq_dictionary.find(word) != freq_dictionary.end()) {
-
             if (id < freq_dictionary[word].size()) {
                 freq_dictionary[word][id].count++;
             } else {
                 freq_dictionary[word].push_back({id, 1});
             }
         } else {
-
             freq_dictionary[word];
             freq_dictionary[word].push_back({id, 1});
         }
@@ -60,5 +57,5 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string &word) {
 }
 
 int InvertedIndex::getSizeDocs() {
-    return docs.size();
+    return (int) docs.size();
 }

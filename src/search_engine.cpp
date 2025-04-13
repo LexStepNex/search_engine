@@ -40,6 +40,7 @@ int main() {
 
 #ifndef DEBUG
     InvertedIndex indexDoc;
+
     const std::vector<std::string> docs = {
             "london is the capital of great britain",
             "paris is the capital of france",
@@ -69,10 +70,25 @@ int main() {
 
     SearchServer searchServer(indexDoc);
     const std::vector<std::string> request = {"moscow is the capital of russia"};
-
     auto vec = searchServer.search(request);
-    auto vec2 = convertRelativeIndex(vec);
-    ConverterJSON::putAnswers(vec2);
+    ConverterJSON::putAnswers(convertRelativeIndex(vec));
+    /*
+    auto vec = indexDoc.freq_dictionary;
+
+    std::ofstream file("../answers.json");
+    for (auto i : vec) {
+        file << "word: " << i.first << "\n";
+        for (auto j: i.second) {
+            file << "   id: " << j.doc_id << " count: " << j.count << "\n";
+        }
+        file << "\n";
+    }
+    file.close();
+*/
+
+    //auto vec = searchServer.search(request);
+    //auto vec2 = convertRelativeIndex(vec);
+    //ConverterJSON::putAnswers(vec2);
 #endif
 
     return 0;

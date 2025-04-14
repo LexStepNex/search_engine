@@ -1,6 +1,5 @@
 #include "search_server.h"
 
-#include <map>
 #include <algorithm>
 
 #include "functions_for_search_server.h"
@@ -59,10 +58,12 @@ SearchServer::calculationAbsoluteRelevances(const std::vector<std::multimap<int,
         }
 
         bool valid_request = false;
+
         for (const auto &request: sort_requests[i]) {
             auto docs_entry = _index.GetWordCount(request.second);
             if (!docs_entry.empty()) {
                 valid_request = true;
+
                 for (auto doc: docs_entry) {
                     absolute_relevance[i][doc.doc_id] += (int) doc.count;
                 }
@@ -88,7 +89,7 @@ SearchServer::calculationRelativeRelevances(std::vector<std::vector<int>> &absol
         size_t size_absolute = absolute_relevance[i].size();
         auto max_abs_relevance = std::max_element(absolute_relevance[i].begin(), absolute_relevance[i].end());
 
-        //std::multimap<float, int> multimap_relative_relevance;
+        const int RESPONSE_LIMIT = 5;
 
         for (int j = 0; j < size_absolute; j++) {
             if (absolute_relevance[i][j] == 0) continue;
@@ -98,7 +99,10 @@ SearchServer::calculationRelativeRelevances(std::vector<std::vector<int>> &absol
             relative_relevance[i].emplace_back(RelativeIndex(doc_id, rank));
         }
         std::sort(relative_relevance[i].begin(), relative_relevance[i].end());
-        std::reverse(relative_relevance[i].begin(), relative_relevance[i].end());
+
+        if (relative_relevance[i].size() > RESPONSE_LIMIT) {
+            relative_relevance[i].erase(relative_relevance[i].begin()+RESPONSE_LIMIT, relative_relevance[i].end());
+        }
     }
 
     return relative_relevance;

@@ -26,12 +26,12 @@ struct RelativeIndex {
     }
 
     bool operator<(const RelativeIndex &index) {
-        return this->rank < index.rank;
-    }
+        if (rank == index.rank) {
+            return this->doc_id < index.doc_id;//для
+        }
 
-    bool operator>(const RelativeIndex &index) {
-        return this->rank > index.rank;
-    }
+        return this->rank > index.rank;//для сортировки по убыванию
+    };
 };
 
 class SearchServer {

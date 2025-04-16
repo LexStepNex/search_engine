@@ -6,8 +6,6 @@
 #include <vector>
 #include <string>
 
-#include "nlohmann/json.hpp"
-
 class ConverterJSON {
 public:
     ConverterJSON() = default;

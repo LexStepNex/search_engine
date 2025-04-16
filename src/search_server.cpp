@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "functions_for_search_server.h"
+#include "converter_json.h"
 
 SearchServer::SearchServer(InvertedIndex &idx) : _index(idx) {}
 
@@ -89,7 +90,7 @@ SearchServer::calculationRelativeRelevances(std::vector<std::vector<int>> &absol
         size_t size_absolute = absolute_relevance[i].size();
         auto max_abs_relevance = std::max_element(absolute_relevance[i].begin(), absolute_relevance[i].end());
 
-        const int RESPONSE_LIMIT = 5;
+        int RESPONSE_LIMIT = ConverterJSON::GetResponsesLimit();
 
         for (int j = 0; j < size_absolute; j++) {
             if (absolute_relevance[i][j] == 0) continue;
@@ -101,7 +102,7 @@ SearchServer::calculationRelativeRelevances(std::vector<std::vector<int>> &absol
         std::sort(relative_relevance[i].begin(), relative_relevance[i].end());
 
         if (relative_relevance[i].size() > RESPONSE_LIMIT) {
-            relative_relevance[i].erase(relative_relevance[i].begin()+RESPONSE_LIMIT, relative_relevance[i].end());
+            relative_relevance[i].erase(relative_relevance[i].begin() + RESPONSE_LIMIT, relative_relevance[i].end());
         }
     }
 

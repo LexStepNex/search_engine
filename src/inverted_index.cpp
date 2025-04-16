@@ -15,6 +15,8 @@ void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &input_doc
     docs.resize(input_docs.size());
     docs = input_docs;
 
+    freq_dictionary.clear();
+
     size_t docsSize = docs.size();
 
     std::vector<std::thread> indexing;

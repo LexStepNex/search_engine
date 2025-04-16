@@ -2,12 +2,14 @@
 
 #include <fstream>
 #include <string>
+#include "iostream"
 
 #include "nlohmann/json.hpp"
 
 #include "functions_for_work_with_files.h"
 #include "general_functions.h"
 #include "functions_for_converter_json.h"
+#include "file_exception.h"
 
 std::vector<std::string> ConverterJSON::getTextDocuments() {
     nlohmann::json config = getJsonData("../config.json");

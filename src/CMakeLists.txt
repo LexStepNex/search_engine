@@ -16,4 +16,5 @@ add_executable(search_engine search_engine.cpp
         search_server.cpp
         ../include/functions_for_search_server.h
         ../include/functions_for_search_server.h
-        functions_for_search_server.cpp)
+        functions_for_search_server.cpp
+        functions_for_work_with_files.cpp)

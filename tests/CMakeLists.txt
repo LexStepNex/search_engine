@@ -1,5 +1,2 @@
 add_subdirectory(tests_inverted_index)
 add_subdirectory(test_search_server)
-
-
-

@@ -22,7 +22,7 @@ void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &input_doc
     std::vector<std::thread> indexing;
 
     for (size_t id = 0; id < docsSize; id++) {
-        indexing.emplace_back(&InvertedIndex::docIndexing, this, docs[id], id);
+        indexing.emplace_back(&InvertedIndex::docIndexing, this, std::cref(docs[id]), id);
     }
 
     for (size_t i = 0; i < docsSize; i++) {

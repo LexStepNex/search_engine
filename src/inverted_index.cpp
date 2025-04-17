@@ -19,6 +19,7 @@ void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &input_doc
 
     size_t docsSize = docs.size();
 
+
     std::vector<std::thread> indexing;
 
     for (size_t id = 0; id < docsSize; id++) {
@@ -27,6 +28,18 @@ void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &input_doc
 
     for (size_t i = 0; i < docsSize; i++) {
         indexing[i].join();
+    }
+
+    //удаляем лишние включения доукментов, в которых слова не найдены
+    for(auto& i : freq_dictionary) {
+        for (int j = 0; j < i.second.size(); ) {
+            if(i.second[j].count == 0) {
+                i.second.erase(i.second.begin() + j);
+                continue;
+            }
+
+            ++j;
+        }
     }
 }
 
@@ -37,16 +50,14 @@ void InvertedIndex::docIndexing(const std::string &doc, size_t id) {
     while (stringStream >> word) {
         std::lock_guard<std::mutex> lock_indexing(indexing_mutex);
 
-        if (freq_dictionary.find(word) != freq_dictionary.end()) {
-            if (id < freq_dictionary[word].size()) {
-                freq_dictionary[word][id].count++;
-            } else {
-                freq_dictionary[word].push_back({id, 1});
-            }
-        } else {
-            freq_dictionary[word];
-            freq_dictionary[word].push_back({id, 1});
+        // Инициализация вектора, если слово не найдено
+        auto& entries = freq_dictionary[word];
+        if (entries.empty() || id >= entries.size()) {
+            entries.resize(std::max(entries.size(), id + 1), Entry{0, 0});
         }
+
+        entries[id].doc_id = id;
+        entries[id].count++;
     }
 }
 

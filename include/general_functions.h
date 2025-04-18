@@ -13,4 +13,7 @@ int wordCountInString(const std::string& str);
 
 std::string getSerialNumber(const unsigned& number);
 
+void toLowerCase(std::string& str);
+
+void checkFile(const std::string& fileName);
 #endif //SEARCH_ENGINE_GENERAL_FUNCTIONS_H

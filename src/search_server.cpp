@@ -108,3 +108,22 @@ SearchServer::calculationRelativeRelevances(std::vector<std::vector<int>> &absol
 
     return relative_relevance;
 }
+
+std::vector<std::vector<std::pair<int, float>>>
+convertRelativeIndex(std::vector<std::vector<RelativeIndex>> &relativeIndexes) {
+    if (relativeIndexes.empty()) return {};
+
+    size_t size_relativeIndexes = relativeIndexes.size();
+    std::vector<std::vector<std::pair<int, float>>> vec(size_relativeIndexes);
+
+    for (int i = 0; i < size_relativeIndexes; i++) {
+        size_t size_valid_doc = relativeIndexes[i].size();
+        vec[i].resize(size_valid_doc);
+
+        for (int j = 0; j < size_valid_doc; ++j) {
+            vec[i][j] = relativeIndexes[i][j].inPair();
+        }
+    }
+
+    return vec;
+}

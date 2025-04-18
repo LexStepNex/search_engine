@@ -86,9 +86,23 @@ std::vector<std::string> ConverterJSON::GetRequests() {
 
 
 void ConverterJSON::putAnswers(const std::vector<std::vector<std::pair<int, float>>> &answers) {
+    std::string pathAnswers = "../answers.json";
+
+    std::ofstream fileAnswers(pathAnswers);
+
     nlohmann::json answersJSON;
 
     nlohmann::json allRequestsJSON;//для более удобного размещения данных
+
+    if (answers.empty()) {
+        answersJSON["answers"];
+        fileAnswers << answersJSON;
+        fileAnswers.close();
+
+        std::cout << "No valid requests\n";
+        return;
+    }
+
 
     size_t requestNumber = 1;
     //разбор по каждому запросу
@@ -112,7 +126,8 @@ void ConverterJSON::putAnswers(const std::vector<std::vector<std::pair<int, floa
 
     answersJSON["answers"] = allRequestsJSON;
 
-    std::ofstream fileAnswer("../answers.json");
-    fileAnswer << answersJSON;
-    fileAnswer.close();
+    fileAnswers << answersJSON;
+    fileAnswers.close();
+
+    std::cout << "Answers load success in file : " << pathAnswers << "\n";
 }

@@ -31,14 +31,14 @@ void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &input_doc
     }
 
     //удаляем лишние включения доукментов, в которых слова не найдены
-    for(auto& i : freq_dictionary) {
-        for (int j = 0; j < i.second.size(); ) {
-            if(i.second[j].count == 0) {
-                i.second.erase(i.second.begin() + j);
+    for(auto& word : freq_dictionary) {
+        for (int i = 0; i < word.second.size(); ) {
+            if(word.second[i].count == 0) {
+                word.second.erase(word.second.begin() + i);
                 continue;
             }
 
-            ++j;
+            ++i;
         }
     }
 }

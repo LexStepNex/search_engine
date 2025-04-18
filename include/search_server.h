@@ -49,4 +49,7 @@ private:
     std::vector<std::vector<RelativeIndex>> calculationRelativeRelevances(std::vector<std::vector<int>>&);
 };
 
+std::vector<std::vector<std::pair<int, float>>>
+convertRelativeIndex(std::vector<std::vector<RelativeIndex>> &relativeIndexes);
+
 #endif //SEARCH_ENGINE_SEARCH_SERVER_H

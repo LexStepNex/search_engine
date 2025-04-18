@@ -49,5 +49,10 @@ int main() {
 
     ConverterJSON::putAnswers(convertRelativeIndex(resultRequests));
 
+
+    std::cout << "Click Enter for exit program\n";
+    std::cin.ignore();
+    std::cin.get();
+
     return 0;
 }

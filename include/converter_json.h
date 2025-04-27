@@ -1,7 +1,6 @@
 #ifndef SEARCH_ENGINE_CONVERTER_JSON_H
 #define SEARCH_ENGINE_CONVERTER_JSON_H
 
-#pragma once
 
 #include <vector>
 #include <string>

@@ -21,21 +21,22 @@ int main() {
 
     programStarting();
 
-    try{
+    try {
         checkFile("config");
         checkFile("requests");
-    } catch (const std::logic_error& x) {
+    } catch (const std::logic_error &x) {
         std::cerr << x.what();
     }
 #endif
+
     std::string answerUser;
-    while(answerUser != "start") {
-        std::cout << "Enter \"start\" to begin the search: ";
+    while (answerUser != "start" && answerUser != "s") {
+        std::cout << R"(Enter "start" or "s" to begin the search: )";
 
         std::cin >> answerUser;
         toLowerCase(answerUser);
 
-        if (answerUser != "start") {
+        if (answerUser != "start" && answerUser != "s") {
             std::cout << "Error. ";
         }
     }

@@ -14,7 +14,7 @@ add_executable(search_engine search_engine.cpp
         inverted_index.cpp
         ${INCLUDE_DIR}/search_server.h
         search_server.cpp
-        ../include/functions_for_search_server.h
-        ../include/functions_for_search_server.h
+        ${INCLUDE_DIR}/functions_for_search_server.h
+        ${INCLUDE_DIR}/functions_for_search_server.h
         functions_for_search_server.cpp
         functions_for_work_with_files.cpp)

@@ -1,6 +1,5 @@
 #ifndef SEARCH_ENGINE_FUNCTIONS_FOR_WORK_WITH_FILES_H
 #define SEARCH_ENGINE_FUNCTIONS_FOR_WORK_WITH_FILES_H
-#pragma once
 
 #include <string>
 

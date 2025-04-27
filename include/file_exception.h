@@ -1,7 +1,6 @@
 #ifndef SEARCH_ENGINE_FILE_EXCEPTION_H
 #define SEARCH_ENGINE_FILE_EXCEPTION_H
 
-#pragma once
 
 #include <exception>
 #include <string>

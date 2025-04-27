@@ -1,8 +1,6 @@
 #ifndef SEARCH_ENGINE_INITIAL_TESTS_H
 #define SEARCH_ENGINE_INITIAL_TESTS_H
 
-#pragma once
-
 #include <fstream>
 
 #include "nlohmann/json.hpp"
@@ -59,6 +57,11 @@ void testAnswersJSON() {
     std::string path = "../answers.json";
 
     std::ofstream createAnswersJSON(path); //открытие или создания файла answers.json
+
+    if(!createAnswersJSON.is_open()) {
+        std::cerr << "Failed to open/create the file answer.json\n";
+        return;
+    }
 
     nlohmann::json answers;
     answers["answers"] = {};

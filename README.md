@@ -26,9 +26,6 @@ Operating Instructions:
 	and if not, the program will write errors in the form of exceptions.
 7. When finished, press Enter to exit the program.
 
-Translated with www.DeepL.com/Translator (free version)
-
-
 Инструкции по пользованию на русском:
 =======================================================================
 Программа ищет в необходимых для вас документах запросы(наборы слов), ранжирует их, сортирует результат в порядке убывания и выдаёт ответ с необходимым для вас максимальным количеством ответов.
